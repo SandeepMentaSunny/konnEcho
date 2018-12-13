@@ -1,0 +1,52 @@
+{
+    "TEMPO_VALUES": [
+        {
+            "CODE": "SMALL",
+            "VALUE": "Small"
+        },
+        {
+            "CODE": "MEDIUM",
+            "VALUE": "Medium"
+        },
+        {
+            "CODE": "HIGH",
+            "VALUE": "High"
+        }
+    ],
+    "INSTRUMENTS": [
+        {
+            "Id": "031ac011-bf5d-4964-ae14-5cfd1c68e33a",
+            "Name": "WesternDrums-",
+            "Keyword": ""
+        },
+        {
+            "Id": "07f0840b-a390-4231-90da-cfc1ca634f01",
+            "Name": "Malahari-bloobass",
+            "Keyword": "Malahari-bloobass"
+        },
+        {
+            "Id": "08082254-c21d-4daf-bc54-2239fac745ee",
+            "Name": "Folk - TaikoBase",
+            "Keyword": "percussion"
+        },
+        {
+            "Id": "0845a50c-a0ca-4e85-a9da-54f1a5922282",
+            "Name": "Copy Of - Carnatic - Thavil",        
+            "Keyword": "Copy Of - percussion"
+        }
+    ],
+    "SHARE_LEVELS": [
+        {
+            "CODE": "PUBLIC",
+            "VALUE": "Public"
+        },
+        {
+            "CODE": "PRIVATE",
+            "VALUE": "Private"
+        },
+        {
+            "CODE": "GROUP",
+            "VALUE": "Group"
+        }
+    ]
+}

@@ -1,0 +1,59 @@
+<form [formGroup]='lyricsForm'>
+    <div formArrayName="items" *ngFor="let item of lyricsForm.get('items')['controls']; let i = index;">
+        <div [formGroupName]='i'>
+            <div class="row col-lg-12">
+                <div class="col-md-7 form-group lyrics">
+                    <div class="btn-group btn-group-sm">
+                        <button class="btn btn-default" ><i class="fas fa-underline"></i></button>
+                        <button class="btn btn-default">DU</button>
+                        <button class="btn btn-default" (click)="undoTask($event)"><i class="fas fa-undo"></i></button>
+                        <button class="btn btn-default" (click)="redoTask($event)"><i class="fas fa-redo"></i></button>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Enter Syllables and Press Enter" [formControl]="item.controls['LYRICS']"
+                        required (keyup.enter)="getSyllableCount($event, i)" [popover]="myPopover" popover="content to be shown in the popover"
+                        popoverTitle="List of Syllables" popoverPlacement="top" [popoverOnHover]="false"
+                        [popoverCloseOnClickOutside]="true" [popoverCloseOnMouseOutside]="false" [popoverDisabled]="false"
+                        [popoverAnimation]="true" [popoverDismissTimeout]="50000" [ngClass]="{'alert-danger': item.controls['LYRICS'].invalid && item.controls['LYRICS'].touched}">
+                    <div *ngIf="item.controls['LYRICS'].hasError('required') && item.controls['LYRICS'].touched"></div>
+                    <popover-content #myPopover title="Popover title" placement="centre" [animation]="true"
+                        [closeOnClickOutside]="true">
+                        <ul>
+                            <li *ngFor="let syllable of syllables; let i=index;" class="syllables-list">
+                                <button href="javascript:;" class="btn btn-primary" (click)="getSyllableTone(i, $event)">
+                                    <i class="fas fa-play"></i>
+                                    <audio>
+                                        <source src="{{syllable?.FILE_PATH}}">
+                                    </audio>
+                                </button>
+                                <a href="javascript:;" (dblclick)="copySyllable($event)">{{syllable?.Syllable}}</a>
+                            </li>
+                        </ul>
+                    </popover-content>
+                </div>
+                <div class="col-md-1 form-group">
+                    <label for="">Syllable Count</label>
+                    <input type="text" class="form-control" disabled [formControl]="item.controls['SYLLABLE_COUNT']">
+                </div>
+                <div class="col-md-1 form-group">
+                    <label for="">Duration In Beats</label>
+                    <input type="text" class="form-control" [formControl]="item.controls['DURATION_IN_BEATS']">
+                </div>
+                <div class="col-md-3 btns">
+                    <ul>
+                        <li>
+                            <button class="btn btn-success" (click)='generateLyrics(i)' data-toggle="tooltip" title="Play"><i class="fas fa-play"></i></button>
+                        </li>
+                        <li *ngIf="deleteDisabled">
+                            <button class="btn btn-danger" (click)='deleteItem(i)' data-toggle="tooltip" title="Delete"><i
+                                    class="fas fa-trash"></i></button>
+                        </li>
+                        <li>
+                            <button class="btn btn-info" (click)='addItem(i)' data-toggle="tooltip" title="Add Syllables"><i
+                                    class="fas fa-plus"></i></button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

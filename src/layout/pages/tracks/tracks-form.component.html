@@ -1,0 +1,11 @@
+<div class="card">
+    <form [formGroup]='tracksForm'>
+        <div formArrayName='lyricsForm'>
+            <div *ngFor="let track of tracksForm.get('lyricsForm').controls; let i=index;">
+                <div [formGroupName]="i">
+                    <app-lyrics-form [index]="i" [group]='tracksForm.controls.lyricsForm.controls[i]' [syllables]="syllablesData" (remove)='lyricManager.removeLyric()' (lyricsData)="sendLyricsFormData"></app-lyrics-form>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

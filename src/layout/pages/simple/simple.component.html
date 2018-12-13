@@ -1,0 +1,114 @@
+<form [formGroup]='registerForm'>
+    <div class="card">
+        <div class="col-lg-12 row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="">Tempo</label>
+                    <select name="" id="" class="form-control" [formControl]="registerForm.controls['TEMPO']">
+                        <option *ngFor="let tempoValue of tempoValues;" [value]='tempoValue.CODE'>{{tempoValue.VALUE}}</option>
+                    </select>
+                    <div *ngIf="registerForm.controls['TEMPO'].hasError('required') && registerForm.controls['TEMPO'].touched"
+                        class="alert alert-danger">{{AppLitteralsConfig.required}}</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="">Instrument</label>
+                    <select name="" id="" class="form-control" [formControl]="registerForm.controls['INSTRUMENT']"
+                        (change)="getSyllables($event)">
+                        <option *ngFor="let instrument of instruments;" [value]='instrument.Id'>{{instrument.Name}}</option>
+                    </select>
+                    <div *ngIf="registerForm.controls['INSTRUMENT'].hasError('required') && registerForm.controls['INSTRUMENT'].touched"
+                        class="alert alert-danger">{{AppLitteralsConfig.required}}</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="">Total Beat Count</label>
+                    <input type="text" [formControl]="registerForm.controls['TOTAL_BEAT_COUNT']" class="form-control">
+                    <div *ngIf="registerForm.controls['TOTAL_BEAT_COUNT'].hasError('required') && registerForm.controls['TOTAL_BEAT_COUNT'].touched"
+                        class="alert alert-danger">{{AppLitteralsConfig.required}}</div>
+                    <div *ngIf="!registerForm.controls['TOTAL_BEAT_COUNT'].hasError('required') && registerForm.controls['TOTAL_BEAT_COUNT'].invalid && registerForm.controls['TOTAL_BEAT_COUNT'].touched"
+                        class="alert alert-danger">{{AppLitteralsConfig.beatCount}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div formArrayName='tracksForm'>
+            <div *ngFor="let track of registerForm.get('tracksForm').controls; let i=index;">
+                <div [formGroupName]="i" class="tracks">
+                    <button class="btn btn-primary" (click)='addItem(i)'><i class="fas fa-compact-disc"></i> Add
+                        Paragraph</button>
+                    <button class="btn btn-danger" (click)="deleteItem(i)" [disabled]="deleteDisableFlag"><i class="fas fa-compact-disc"></i>
+                        Delete
+                        Paragraph</button>
+                    <app-tracks-form [index]="i" [group]='registerForm.controls.tracksForm.controls[i]' [syllables]="syllables"></app-tracks-form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row col-lg-12">
+            <ul>
+                <li>
+                    <button class="btn btn-success"><i class="fas fa-play"></i> Play</button>
+                </li>
+                <li>
+                    <button class="btn btn-warning" data-toggle="modal" data-target="#myModal"><i class="fas fa-save"></i>
+                        Save</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Save Paragraph</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input type="text" class="form-control" [formControl]="registerForm.controls['NAME']"
+                            placeholder="Name">
+                        <div *ngIf="registerForm.controls['NAME'].hasError('required') && registerForm.controls['NAME'].touched"
+                            class="alert alert-danger">{{AppLitteralsConfig.required}}</div>
+                        <div *ngIf="!registerForm.controls['NAME'].hasError('required') && registerForm.controls['NAME'].invalid && registerForm.controls['NAME'].touched"
+                            class="alert alert-danger">{{AppLitteralsConfig.name}}</div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" [formControl]="registerForm.controls['DESCRIPTION']"
+                            placeholder="Description">
+                        <div *ngIf="registerForm.controls['DESCRIPTION'].hasError('required') && registerForm.controls['DESCRIPTION'].touched"
+                            class="alert alert-danger">{{AppLitteralsConfig.required}}</div>
+                        <div *ngIf="!registerForm.controls['DESCRIPTION'].hasError('required') && registerForm.controls['DESCRIPTION'].invalid && registerForm.controls['DESCRIPTION'].touched"
+                            class="alert alert-danger">{{AppLitteralsConfig.name}}</div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" [formControl]="registerForm.controls['KEYWORDS']"
+                            placeholder="Keywords">
+                        <div *ngIf="registerForm.controls['KEYWORDS'].hasError('required') && registerForm.controls['KEYWORDS'].touched"
+                            class="alert alert-danger">{{AppLitteralsConfig.required}}</div>
+                        <div *ngIf="!registerForm.controls['KEYWORDS'].hasError('required') && registerForm.controls['KEYWORDS'].invalid && registerForm.controls['KEYWORDS'].touched"
+                            class="alert alert-danger">{{AppLitteralsConfig.name}}</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Share Level: </label>
+                        <div class="form-check-inline" *ngFor="let share of shareLevels;">
+                            <label class="form-check-label">
+                                <input type="radio" value="{{share?.CODE}}" [formControl]="registerForm.controls['SHARE_LEVEL']" class="form-check-input">{{share?.VALUE}}
+                            </label>
+                        </div>
+                        <div *ngIf="registerForm.controls['SHARE_LEVEL'].hasError('required') && registerForm.controls['SHARE_LEVEL'].touched"
+                            class="alert alert-danger">{{AppLitteralsConfig.required}}</div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal" (click)='submitData()'>Submit</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

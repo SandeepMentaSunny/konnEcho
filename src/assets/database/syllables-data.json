@@ -1,0 +1,68 @@
+{
+    "SYLLABLES": [
+        {
+            "Id": "031ac011-bf5d-4964-ae14-5cfd1c68e33a",
+            "Name": "WesternDrums-",
+            "Keywords": "",
+            "Description": "",
+            "VirtualInstrumentKeys": [
+                {
+                     "SyllableId": 34,
+                    "Syllable": "bheem",
+                    "FILE_PATH": "assets/songs/song.mp3"
+                },
+                {
+                    "SyllableId": 14,
+                    "Syllable": "dheem",
+                    "FILE_PATH": "assets/songs/song.mp3"
+                }
+            ]
+        },
+        {
+            "Id": "07f0840b-a390-4231-90da-cfc1ca634f01",
+            "Name": "Malahari-bloobass",
+            "Keywords": "Malahari-bloobass",
+            "Description": "",
+            "VirtualInstrumentKeys": [
+                {
+                     "SyllableId": 34,
+                    "Syllable": "thom",
+                    "FILE_PATH": "assets/songs/song.mp3"
+                },
+                {
+                    "SyllableId": 14,
+                    "Syllable": "thaki",
+                    "FILE_PATH": "assets/songs/song.mp3"
+                },
+                {
+                    "SyllableId": 15,
+                    "Syllable": "ta",
+                    "FILE_PATH": "assets/songs/song.mp3"
+                }
+            ]
+        },
+        {
+            "Id": "07f0840b-a390-4231-90da-cfc1ca634f01",
+            "Name": "Malahari-bloobass",
+            "Keywords": "Malahari-bloobass",
+            "Description": "",
+            "VirtualInstrumentKeys": [
+                {
+                     "SyllableId": 34,
+                    "Syllable": "thom",
+                    "FILE_PATH": "assets/songs/song.mp3"
+                },
+                {
+                    "SyllableId": 14,
+                    "Syllable": "thaki",
+                    "FILE_PATH": "assets/songs/song.mp3"
+                },
+                {
+                    "SyllableId": 15,
+                    "Syllable": "ta",
+                    "FILE_PATH": "assets/songs/song.mp3"
+                }
+            ]
+        }
+    ]
+}
